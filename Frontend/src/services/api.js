@@ -12,6 +12,12 @@
 
 import { DENTAL_SERVICES, DENTISTS } from '../data/clinicData.js';
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+
+function apiUrl(path) {
+  return `${API_BASE_URL}${path}`;
+}
+
 // ─── In-memory token store ────────────────────────────────────────────────────
 // Never persisted to localStorage — cleared on page refresh (re-hydrated via /me)
 let _accessToken = null;
@@ -37,7 +43,7 @@ async function _rawFetch(url, options = {}) {
     ...options.headers,
   };
 
-  const res = await fetch(url, {
+  const res = await fetch(apiUrl(url), {
     ...options,
     headers,
     credentials: 'include', // Send httpOnly refresh token cookie automatically
