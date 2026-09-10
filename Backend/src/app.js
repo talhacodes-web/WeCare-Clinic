@@ -30,9 +30,19 @@ app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/contact", contactRoutes);
 
+
+
+
 // Health check
 app.get("/api/health", (req, res) => {
     res.json({ success: true, message: "WeCare Dental Clinic API is running." });
+});
+
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend is running successfully!"
+  });
 });
 
 // 404 handler for unknown routes
