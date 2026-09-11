@@ -1,9 +1,10 @@
 const dns = require("dns");
-dns.setServers(['8.8.8.8', '8.8.4.4']);
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 const config = require("./config/config");
 
 const authRoutes = require("./routes/authRoutes");
@@ -17,40 +18,50 @@ const app = express();
 
 app.use(cors({
     origin: config.clientOrigin,
-    credentials: true, // Allow cookies (refresh token) to be sent cross-origin
+    credentials: true,
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// ─── Routes ───────────────────────────────────────────────────────────────────
+// ─── API Routes ───────────────────────────────────────────────────────────────
 
 app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/contact", contactRoutes);
 
+// ─── Health Check ─────────────────────────────────────────────────────────────
 
-
-
-// Health check
 app.get("/api/health", (req, res) => {
-    res.json({ success: true, message: "WeCare Dental Clinic API is running." });
+    res.json({
+        success: true,
+        message: "WeCare Dental Clinic API is running."
+    });
 });
+
+// ─── Backend Root ─────────────────────────────────────────────────────────────
 
 app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Backend is running successfully!"
-  });
+    res.json({
+        success: true,
+        message: "Backend is running successfully!"
+    });
 });
 
-// 404 handler for unknown routes
-app.use((req, res) => {
-    res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found.` });
+// ─── Serve React Frontend ─────────────────────────────────────────────────────
+
+const frontendPath = path.join(__dirname, "../dist");
+
+app.use(express.static(frontendPath));
+
+// React Router fallback
+app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-// ─── Global Error Handler (must be last) ─────────────────────────────────────
+// ─── Global Error Handler ─────────────────────────────────────────────────────
+
 app.use(errorHandler);
 
 module.exports = app;
