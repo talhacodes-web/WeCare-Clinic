@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "installCommand": "npm ci --prefix Backend && npm ci --prefix Frontend",
+  "buildCommand": "npm --prefix Frontend run build",
+  "builds": [
+    {
+      "src": "Backend/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["Frontend/dist/**"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "Backend/server.js"
+    }
+  ]
+}

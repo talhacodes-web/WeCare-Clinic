@@ -40,23 +40,14 @@ app.get("/api/health", (req, res) => {
     });
 });
 
-// ─── Backend Root ─────────────────────────────────────────────────────────────
-
-app.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "Backend is running successfully!"
-    });
-});
-
 // ─── Serve React Frontend ─────────────────────────────────────────────────────
 
-const frontendPath = path.join(__dirname, "../dist");
+const frontendPath = path.join(__dirname, "../../Frontend/dist");
 
 app.use(express.static(frontendPath));
 
 // React Router fallback
-app.get("*", (req, res) => {
+app.get("/{*splat}", (req, res) => {
     res.sendFile(path.join(frontendPath, "index.html"));
 });
 
