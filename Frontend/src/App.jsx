@@ -12,6 +12,7 @@ import { LoginPage } from './pages/LoginPage.jsx';
 import { SignupPage } from './pages/SignupPage.jsx';
 import { BookAppointmentPage } from './pages/BookAppointmentPage.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
+import { Chatbot } from './components/Chatbot.jsx';
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <Chatbot />
     </div>
   );
 }

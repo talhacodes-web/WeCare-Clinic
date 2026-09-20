@@ -10,6 +10,7 @@ const config = require("./config/config");
 const authRoutes = require("./routes/authRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/ai", aiRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 

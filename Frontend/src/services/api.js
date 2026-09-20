@@ -211,6 +211,22 @@ export const contactAPI = {
   },
 };
 
+// ─── AI Assistant API ────────────────────────────────────────────────────────
+
+export const aiAPI = {
+  /**
+   * POST /api/ai/chat
+   * Payload: { message, history }
+   * Returns: { success, answer }
+   */
+  async chat(message, history = []) {
+    return apiFetch('/api/ai/chat', {
+      method: 'POST',
+      body: JSON.stringify({ message, history }),
+    });
+  },
+};
+
 // ─── Services & Dentists (static fallback) ────────────────────────────────────
 
 export const serviceAPI = {

@@ -22,6 +22,7 @@ const config = {
     clinicPhone: process.env.CLINIC_PHONE || '+1 (555) 234-5678',
     clinicAddress: process.env.CLINIC_ADDRESS || '123 Health Ave, Suite 400, New York, NY',
     frontendUrl: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+    gemeniApiKey: process.env.GOOGLE_GENAI_API_KEY,
 };
 
 module.exports = config;
