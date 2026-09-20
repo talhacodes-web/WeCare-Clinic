@@ -28,6 +28,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "WeCare Dental Clinic API is running."
+    });
+});
+
 // ─── API Routes ───────────────────────────────────────────────────────────────
 
 app.use("/api/auth", authRoutes);
