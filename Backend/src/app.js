@@ -1,16 +1,18 @@
 const dns = require("dns");
+
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const path = require("path");
+
 const config = require("./config/config");
 
 const authRoutes = require("./routes/authRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const aiRoutes = require("./routes/aiRoutes");
+
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -40,17 +42,6 @@ app.get("/api/health", (req, res) => {
         success: true,
         message: "WeCare Dental Clinic API is running."
     });
-});
-
-// ─── Serve React Frontend ─────────────────────────────────────────────────────
-
-const frontendPath = path.join(__dirname, "../../Frontend/dist");
-
-app.use(express.static(frontendPath));
-
-// React Router fallback
-app.get("/{*splat}", (req, res) => {
-    res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // ─── Global Error Handler ─────────────────────────────────────────────────────
