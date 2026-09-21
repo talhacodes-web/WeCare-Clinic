@@ -53,7 +53,7 @@ export const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <div className="w-11 h-11 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-sm group-hover:bg-teal-700 transition-colors">
-                <Sparkles className="w-6 h-6" />
+                <img className="w-9 h-9"  src="dental_logo.png" alt="Dental Logo" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-none group-hover:text-teal-700 transition-colors">

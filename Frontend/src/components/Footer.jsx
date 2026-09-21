@@ -25,7 +25,7 @@ export const Footer = () => {
           <div className="lg:col-span-4 space-y-4">
             <Link to="/" className="inline-flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-xl bg-teal-500 text-white flex items-center justify-center shadow-sm">
-                <Sparkles className="w-5 h-5" />
+                <img className="w-8 h-8" src="dental_logo.png" alt="Dental Logo" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-extrabold text-white tracking-tight">
